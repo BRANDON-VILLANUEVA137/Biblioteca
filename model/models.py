@@ -7,6 +7,7 @@ class Autor(Base):
     __tablename__ = 'autores'
     id = Column(Integer, primary_key=True)
     nombre = Column(String, nullable=False)
+    nacionalidad = Column(String)  #nuevo campo
     libros = relationship('Libro', back_populates='autor')
 
 class Libro(Base):
@@ -14,6 +15,7 @@ class Libro(Base):
     id = Column(Integer, primary_key=True)
     titulo = Column(String, nullable=False)
     genero = Column(String)
+    año_publicacion = Column(Integer) #nuevo campo
     autor_id = Column(Integer, ForeignKey('autores.id'))
     autor = relationship('Autor', back_populates='libros')
     prestamos = relationship('Prestamo', back_populates='libro')
@@ -23,6 +25,8 @@ class Usuario(Base):
     __tablename__ = 'usuarios'
     id = Column(Integer, primary_key=True)
     nombre = Column(String, nullable=False)
+    email = Column(String)  #nuevo campo
+    telefono = Column(String)  #nuevo campo
     prestamos = relationship('Prestamo', back_populates='usuario')
 
 class Prestamo(Base):
