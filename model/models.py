@@ -9,3 +9,12 @@ class Autor(Base):
     nombre = Column(String, nullable=False)
     libros = relationship('Libro', back_populates='autor')
 
+class Libro(Base):
+    __tablename__ = 'libros'
+    id = Column(Integer, primary_key=True)
+    titulo = Column(String, nullable=False)
+    genero = Column(String)
+    autor_id = Column(Integer, ForeignKey('autores.id'))
+    autor = relationship('Autor', back_populates='libros')
+    prestamos = relationship('Prestamo', back_populates='libro')
+
