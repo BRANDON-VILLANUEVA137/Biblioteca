@@ -25,3 +25,13 @@ class Usuario(Base):
     nombre = Column(String, nullable=False)
     prestamos = relationship('Prestamo', back_populates='usuario')
 
+class Prestamo(Base):
+    __tablename__ = 'prestamos'
+    id = Column(Integer, primary_key=True)
+    libro_id = Column(Integer, ForeignKey('libros.id'))
+    usuario_id = Column(Integer, ForeignKey('usuarios.id'))
+    fecha_prestamo = Column(Date)
+    fecha_devolucion = Column(Date)
+    devuelto = Column(Integer, default=0)
+    libro = relationship('Libro', back_populates='prestamos')
+    usuario = relationship('Usuario', back_populates='prestamos')
