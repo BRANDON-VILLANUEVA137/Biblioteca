@@ -18,3 +18,10 @@ class Libro(Base):
     autor = relationship('Autor', back_populates='libros')
     prestamos = relationship('Prestamo', back_populates='libro')
 
+
+class Usuario(Base):
+    __tablename__ = 'usuarios'
+    id = Column(Integer, primary_key=True)
+    nombre = Column(String, nullable=False)
+    prestamos = relationship('Prestamo', back_populates='usuario')
+
